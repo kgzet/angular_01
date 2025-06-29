@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ELEMENT_DATA } from "../../data/element-data";
 import { EditPeriodicElementDialogComponent } from '../edit-periodic-element-dialog/edit-periodic-element-dialog.component';
 import { PeriodicElement } from '../../models/periodic-element.model';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'periodic-table',
@@ -20,7 +21,7 @@ import { PeriodicElement } from '../../models/periodic-element.model';
     MatInputModule,
   ],
 })
-export class PeriodicTableComponent implements AfterViewInit  {
+export class PeriodicTableComponent implements OnInit, AfterViewInit  {
   columnsToDisplay: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
   private filterSubject = new Subject<string>();
@@ -28,6 +29,10 @@ export class PeriodicTableComponent implements AfterViewInit  {
   @ViewChild(MatSort) sort: MatSort | null = null;
 
   ngOnInit() {
+    this.dataSource.data = []; // simulation
+    setTimeout(() => {
+      this.dataSource.data = ELEMENT_DATA;
+    }, 1000);
     this.filterSubject.pipe(debounceTime(2000)).subscribe(filterValue => {
       this.dataSource.filter = filterValue;
     });

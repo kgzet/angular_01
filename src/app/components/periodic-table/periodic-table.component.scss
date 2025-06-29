@@ -1,0 +1,71 @@
+.mat-table {
+    max-width: 80%;
+    margin: 2rem auto;
+    overflow-x: auto;
+}
+
+.mat-column-position {
+    width: 15%;
+    border-right: 1px solid currentColor;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    text-align: center;
+}
+
+.mat-column-name {
+    width: 25%;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    font-size: 15px;
+}
+
+.mat-column-weight {
+    width: 25%;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    font-weight: bold;
+}
+
+.mat-column-symbol {
+    width: 20%;
+    padding-left: 2rem;
+    padding-right: 1rem;
+    font-style: italic;
+}
+
+.mat-column-action {
+    width: 15%;
+}
+
+.table-header {
+    font-style: normal;
+    font-weight: 500;
+}
+
+th.mat-header-sorted {
+    color: black;
+}
+
+.container {
+    width: 80vw;
+    padding: 2rem 5rem 2rem 5rem;
+    margin: 0 auto;
+}
+
+.input-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.edit-button {
+  border-radius: 20px;
+  background-color: #fbd0f6;
+  color: #555;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  padding: 0 20px;
+}

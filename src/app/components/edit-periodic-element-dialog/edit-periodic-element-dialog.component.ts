@@ -1,9 +1,12 @@
 import { Component, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators, ValidatorFn, AbstractControl } from '@angular/forms';
-import { PeriodicElement } from '../../models/periodic-element.model';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { PeriodicElement } from '../../models/periodic-element.model';
 
 @Component({
   selector: 'edit-periodic-element-dialog',
@@ -11,10 +14,12 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./edit-periodic-element-dialog.component.scss'],
   imports: [
     MatFormFieldModule,
-    MatDialogContent,
-    MatDialogActions,
+    MatInputModule,
     ReactiveFormsModule,
     CommonModule,
+    MatDialogModule,
+    MatIconModule,
+    MatButtonModule,
   ],
 })
 export class EditPeriodicElementDialogComponent {
@@ -26,7 +31,11 @@ export class EditPeriodicElementDialogComponent {
     private fb: FormBuilder
   ) {
     this.elementForm = this.fb.group({
-      position: [data.element.position, [Validators.required, Validators.min(1), this.uniquePositionValidator(data.allPositions, data.element.position)]],
+      position: [data.element.position, [
+        Validators.required, 
+        Validators.min(1), 
+        this.uniquePositionValidator(data.allPositions, data.element.position)]
+      ],
       name: [data.element.name, [Validators.required]],
       weight: [data.element.weight, [Validators.required]],
       symbol: [data.element.symbol, [Validators.required]]
@@ -37,6 +46,7 @@ export class EditPeriodicElementDialogComponent {
     return (control: AbstractControl) => {
       const value = control.value;
       if (allPositions.filter(pos => pos !== currentPosition).includes(Number(value))) {
+        this.elementForm.get('position')?.setErrors({ notUnique: true });
         return { notUnique: true };
       }
       return null;

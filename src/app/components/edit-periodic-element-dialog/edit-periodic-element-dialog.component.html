@@ -1,9 +1,15 @@
 <h2 mat-dialog-title>Edit Element</h2>
-<form [formGroup]="elementForm" (ngSubmit)="onSave()">
+<form [formGroup]="elementForm">
   <mat-dialog-content>
     <mat-form-field appearance="fill">
       <mat-label>Position</mat-label>
       <input matInput formControlName="position" type="number" min="1">
+      <mat-error *ngIf="elementForm.get('position')?.hasError('notUnique')">
+        This position is already taken!
+      </mat-error>
+      <mat-error *ngIf="elementForm.get('position')?.hasError('required')">
+        Position is required
+      </mat-error>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Name</mat-label>
@@ -19,7 +25,7 @@
     </mat-form-field>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button type="button" (click)="onNoClick()">Cancel</button>
-    <button mat-flat-button color="primary" type="submit" [disabled]="!elementForm.valid">Save</button>
+    <button mat-elevated-button type="button" (click)="onNoClick()" class="table-header custom-button">Cancel</button>
+    <button mat-elevated-button (click)="onSave()" [disabled]="elementForm.invalid" class="table-header custom-button">Save</button>
   </mat-dialog-actions>
 </form>

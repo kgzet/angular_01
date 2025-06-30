@@ -1,3 +1,10 @@
+@use '../../app' as app;
+@use "sass:map";
+
+:root {
+  --mat-table-background-color: #{map.get(app.$myapp-theme-primary, 500)};
+}
+
 .mat-table {
     max-width: 80%;
     margin: 2rem auto;
@@ -17,6 +24,7 @@
     padding-left: 2rem;
     padding-right: 1rem;
     font-size: 15px;
+    text-align: center;
 }
 
 .mat-column-weight {
@@ -24,6 +32,7 @@
     padding-left: 2rem;
     padding-right: 1rem;
     font-weight: bold;
+    text-align: center;
 }
 
 .mat-column-symbol {
@@ -31,10 +40,12 @@
     padding-left: 2rem;
     padding-right: 1rem;
     font-style: italic;
+    text-align: center;
 }
 
 .mat-column-action {
     width: 15%;
+    text-align: center;
 }
 
 .table-header {
@@ -64,8 +75,52 @@ th.mat-header-sorted {
 
 .edit-button {
   border-radius: 20px;
-  background-color: #fbd0f6;
-  color: #555;
   box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   padding: 0 20px;
+}
+
+.loading-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100%;
+  background: rgba(240, 240, 240, 0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  color: map.get(app.$myapp-theme-primary, 500);
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.loading-mask .spinner {
+  margin-bottom: 18px;
+  width: 48px;
+  height: 48px;
+  border: 6px solid map.get(app.$myapp-theme-secondary, 50);
+  border-top: 6px solid map.get(app.$myapp-theme-primary, 500);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+
+:host ::ng-deep .table-header { 
+    text-align: center; 
+}
+
+:host ::ng-deep .table-header .mat-sort-header-container {
+  width: 100%;
+  justify-content: center;
+  padding-right: 24px;
 }

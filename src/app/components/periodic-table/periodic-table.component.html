@@ -6,8 +6,12 @@
   </mat-form-field>
   </div>
   
-  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  <div *ngIf="isLoading" class="loading-mask text-primary">
+    <div class="spinner"></div>
+    Data loading...
+  </div>
 
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
     <ng-container matColumnDef="position">
       <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by position" class="table-header"> 
         Position 
@@ -42,18 +46,18 @@
       <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
     </ng-container>
 
-  <ng-container matColumnDef="action">
-    <th mat-header-cell *matHeaderCellDef>Edit</th>
-    <td mat-cell *matCellDef="let element">
-      <button mat-raised-button (click)="openEditDialog(element)" class="table-header edit-button">
-        Edit
-      </button>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef class="table-header">Edit</th>
+      <td mat-cell *matCellDef="let element">
+        <button mat-raised-button (click)="openEditDialog(element)" class="edit-button">
+          Edit
+        </button>
+      </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
 
   </table>
 
-</div>   
+</div>

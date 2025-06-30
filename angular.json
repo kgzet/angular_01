@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Angular-task-Kinga-Zajdel": {
+    "Angular-project_01-KZ": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -28,7 +28,7 @@
             ],
             "styles": [
               "@angular/material/prebuilt-themes/magenta-violet.css",
-              "src/styles.scss"
+              "src/app/app.scss"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
@@ -64,10 +64,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Angular-task-Kinga-Zajdel:build:production"
+              "buildTarget": "Angular-project_01-KZ:build:production"
             },
             "development": {
-              "buildTarget": "Angular-task-Kinga-Zajdel:build:development"
+              "buildTarget": "Angular-project_01-KZ:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -87,8 +87,7 @@
               }
             ],
             "styles": [
-              "@angular/material/prebuilt-themes/magenta-violet.css",
-              "src/styles.scss"
+              "@angular/material/prebuilt-themes/magenta-violet.css"
             ]
           }
         }

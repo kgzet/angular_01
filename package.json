@@ -1,5 +1,5 @@
 {
-  "name": "angular-task-kinga-zajdel",
+  "name": "angular-project_01-kz",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:Angular-task-Kinga-Zajdel": "node dist/Angular-task-Kinga-Zajdel/server/server.mjs"
+    "serve:ssr:Angular-project_01-KZ": "node dist/Angular-project_01-KZ/server/server.mjs"
   },
   "prettier": {
     "overrides": [
@@ -48,6 +48,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "sass": "^1.89.2",
     "typescript": "~5.8.2"
   }
 }
